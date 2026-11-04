@@ -1,0 +1,52 @@
+@page "/catalogo"
+
+<div class="grid grid-cols-3 gap-4 p-4">
+@foreach (Cafe cafe in lstCafes)
+{
+    <div class="flex flex-col items-center justify-center border-2 w-10vw h-10vh p-4 m-2">
+    <img src="@cafe.Imagen" class="w-full h-full fit-cover"/>
+    <h2 class="text-bold">@cafe.NombreCafe</h2>
+    <p>@cafe.DescripcionCafe</p>
+    <p class="text-bold text-white bg-green-600 rounded-xl p-3">@cafe.PrecioCafe Bs.</p>
+</div>
+}
+</div>
+
+@* Imagen, NombreCafe, DescripcionCafe, PrecioCafe *@
+
+@code{
+
+    private List<Cafe> lstCafes = new()
+    {
+        // Americano, Espresso, latte, cappuccino
+        new()
+        {
+            Imagen = "https://imgs.search.brave.com/JwX7YP83TtmNRkD-HjnsXxYPGB1pH1rJixJrzSj68Ec/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jdXBs/YWNvZmZlZS5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjUv/MDMvd2hhdC1pcy1h/bi1hbWVyaWNhbm8t/ZmVhdHVyZWQuanBn",
+            NombreCafe = "Americano",
+            DescripcionCafe = "Cafe negro",
+            PrecioCafe = 20
+        },
+        new()
+        {
+Imagen = "https://imgs.search.brave.com/4DX_yjz-gEC5-8eGt3YP6XXvYbjwcZaRJ0Wtm2oaeDU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wZXJm/ZWN0ZGFpbHlncmlu/ZC5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMTkvMTEvY2Fw/cHVjY2luby0yLnBu/Zw",
+            NombreCafe = "Latte",
+            DescripcionCafe = "Cafe con leche",
+            PrecioCafe = 20
+        },
+        new()
+        {
+            Imagen = "https://imgs.search.brave.com/OuKUAgfLXIDadhrg8defIj_Xr88cpA2gwd0fNP6XO3w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c3RhcmJ1Y2tzYXRo/b21lLmNvbS9zaXRl/cy9kZWZhdWx0L2Zp/bGVzLzIwMjQtMTAv/Q2FwcHVjY2lub18x/MXpvbi5wbmc",
+            NombreCafe = "Capuccino",
+            DescripcionCafe = "Cafe con mas leche",
+            PrecioCafe = 20
+        },
+    };
+
+    class Cafe
+    {
+        public string Imagen { get; set; }
+        public string NombreCafe { get; set; }
+        public string DescripcionCafe { get; set; }
+        public decimal PrecioCafe { get; set; }
+    }
+}
