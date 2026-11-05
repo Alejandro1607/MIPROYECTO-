@@ -20,14 +20,29 @@ app.UseAPIEndpoints();
 
 | | |
 |---|---|
-| .NET SDK | 10.0 |
+| .NET SDK | 10.0 (cualquier 10.0.x) |
 | Node + pnpm | sólo para Tailwind (el build lo invoca solo) |
-| `dotnet-ef` | ya está en `dotnet-tools.json` → `dotnet tool restore` |
+| `dotnet-ef` | `dotnet tool install --global dotnet-ef --version "10.0.*"` |
 
 ```bash
-dotnet tool restore
 dotnet run
 ```
+
+### Versiones de .NET
+
+Los paquetes de Microsoft (ASP.NET Core, Identity y EF Core) comparten una sola versión flotante,
+definida una vez en `sharpness-sharp.csproj`, y el proveedor de PostgreSQL tiene la suya porque
+Npgsql numera sus parches aparte:
+
+```xml
+<DotNetVersion>10.0.*</DotNetVersion>
+<NpgsqlVersion>10.0.*</NpgsqlVersion>
+```
+
+Cada `restore` toma el último parche de 10.0, así que todos los paquetes de EF Core quedan en el
+mismo parche sin importar cuál 10.0.x tenga instalado cada uno. Para fijar una versión exacta, por
+ejemplo al depurar un problema, se cambia la propiedad o se compila con
+`-p:DotNetVersion=10.0.12`.
 
 La primera compilación corre `pnpm install` y genera `wwwroot/app.css` con Tailwind.
 En Linux y macOS además deja un watcher de CSS andando.
