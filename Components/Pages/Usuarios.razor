@@ -1,0 +1,73 @@
+@page "/usuarios"
+@using sharpness_sharp.Components.UIComponents
+<div class="flex flex-col gap-2">
+    @foreach (Usuario user in lstUsuarios)
+    {
+        <div class="border ">
+            <h2>Username: @user.Nombre @user.Apellido</h2>
+            <p>Color: @user.Color_Piel</p>
+            <p>Email: @user.Email</p>
+            <p>Password: @user.Password</p>
+            <p>Estatura: @user.Estatura</p>
+            <p>Fecha de Nacimiento: @user.Fecha_Nac</p>
+        </div>
+
+        <CoffeeCard Imagen="imagen.jpg" DescripcionCafe="jfdskljflkds" NombreCafe="klfdsjafkljdslkfjdas" PrecioCafe="20">
+        </CoffeeCard>
+    }
+</div>
+
+@code {
+
+    public List<Usuario> lstUsuarios = new()
+{
+    new Usuario("Mateo", "Vargas", "mateo.vargas@example.com", "DemoMateo01!", "2001-03-15", "Morena", 1.75),
+    new Usuario("Valentina", "Rojas", "valentina.rojas@example.com", "DemoVale02!", "2002-07-22", "Clara", 1.62),
+    new Usuario("Santiago", "Flores", "santiago.flores@example.com", "DemoSanti03!", "2000-11-08", "Oscura", 1.80),
+    new Usuario("Camila", "Mendoza", "camila.mendoza@example.com", "DemoCami04!", "2003-01-30", "Trigueña", 1.65),
+    new Usuario("Sebastián", "Torres", "sebastian.torres@example.com", "DemoSeba05!", "1999-09-12", "Clara", 1.78),
+    new Usuario("Lucía", "Castro", "lucia.castro@example.com", "DemoLucia06!", "2001-05-18", "Morena", 1.58),
+    new Usuario("Nicolás", "Herrera", "nicolas.herrera@example.com", "DemoNico07!", "2002-12-03", "Trigueña", 1.72),
+    new Usuario("Isabella", "Romero", "isabella.romero@example.com", "DemoIsa08!", "2004-04-25", "Oscura", 1.68),
+    new Usuario("Alejandro", "Medina", "alejandro.medina@example.com", "DemoAlex09!", "1998-08-09", "Morena", 1.85),
+    new Usuario("Gabriela", "Ortiz", "gabriela.ortiz@example.com", "DemoGabi10!", "2000-02-14", "Clara", 1.60),
+    new Usuario("Daniel", "Aguilar", "daniel.aguilar@example.com", "DemoDani11!", "2003-06-07", "Trigueña", 1.74),
+    new Usuario("Mariana", "Salazar", "mariana.salazar@example.com", "DemoMari12!", "2001-10-21", "Morena", 1.63),
+    new Usuario("Samuel", "Paredes", "samuel.paredes@example.com", "DemoSamu13!", "2002-03-28", "Oscura", 1.77),
+    new Usuario("Daniela", "Navarro", "daniela.navarro@example.com", "DemoDany14!", "1999-07-16", "Clara", 1.70),
+    new Usuario("Joaquín", "Cabrera", "joaquin.cabrera@example.com", "DemoJoaco15!", "2004-11-05", "Trigueña", 1.69),
+    new Usuario("Renata", "Suárez", "renata.suarez@example.com", "DemoRena16!", "2000-01-19", "Morena", 1.66),
+    new Usuario("Andrés", "Valdez", "andres.valdez@example.com", "DemoAndres17!", "2001-09-24", "Clara", 1.82),
+    new Usuario("Paula", "Miranda", "paula.miranda@example.com", "DemoPau18!", "2003-05-11", "Oscura", 1.57),
+    new Usuario("Gabriel", "Escobar", "gabriel.escobar@example.com", "DemoGabo19!", "2002-08-02", "Morena", 1.76),
+    new Usuario("Sofía", "Peña", "sofia.pena@example.com", "DemoSofi20!", "2004-12-17", "Trigueña", 1.64)
+};
+
+    public class Usuario
+    {
+        public string? Nombre { get; set; }
+        public string? Apellido { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public string? Fecha_Nac { get; set; }
+        public string? Color_Piel { get; set; }
+        public double Estatura { get; set; }
+
+        public Usuario(string nombre, string apellido, string email, string password, string fecha_nac, string color_piel,
+double estatura)
+        {
+            Nombre = nombre;
+            Apellido = apellido;
+            Email = email;
+            Password = password;
+            Fecha_Nac = fecha_nac;
+            Color_Piel = color_piel;
+            Estatura = estatura;
+        }
+
+        public Usuario()
+        {
+            
+        }
+    }
+}

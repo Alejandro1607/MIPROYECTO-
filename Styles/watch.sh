@@ -16,7 +16,7 @@ if [ -f "$pidfile" ] && kill -0 "$(cat "$pidfile")" 2>/dev/null; then
 fi
 
 nohup bash -c "
-  pnpm exec tailwindcss -i ./Styles/tailwind.css -o ./wwwroot/app.css --watch=always &
+  node_modules/.bin/tailwindcss -i ./Styles/tailwind.css -o ./wwwroot/app.css --watch=always &
   tw_pid=\$!
   echo \$tw_pid > '$pidfile'
   while kill -0 $watch_pid 2>/dev/null; do sleep 2; done

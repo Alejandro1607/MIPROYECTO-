@@ -24,9 +24,14 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <TailwindBin>node_modules/.bin/tailwindcss</TailwindBin>
+    <TailwindBin Condition="'$(OS)' == 'Windows_NT'">node_modules\.bin\tailwindcss.cmd</TailwindBin>
+  </PropertyGroup>
+
   <Target Name="TailwindCss" BeforeTargets="AssignTargetPaths" Condition="'$(DesignTimeBuild)' != 'true' And '$(BuildingProject)' == 'true'">
     <Exec Command="pnpm install" Condition="!Exists('node_modules')" />
-    <Exec Command="pnpm exec tailwindcss -i ./Styles/tailwind.css -o ./wwwroot/app.css --minify" />
+    <Exec Command="$(TailwindBin) -i ./Styles/tailwind.css -o ./wwwroot/app.css --minify" />
     <Exec Command="bash ./Styles/watch.sh" Condition="'$(OS)' != 'Windows_NT'" />
   </Target>
 
